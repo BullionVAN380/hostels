@@ -18,7 +18,6 @@ class Booking extends Model
         'room_id',
         'check_in',
         'check_out',
-        'nights',
         'total_amount',
         'status'
     ];
@@ -48,15 +47,9 @@ class Booking extends Model
         parent::boot();
 
         static::creating(function ($booking) {
-            // Calculate nights if not set
-            if (!$booking->nights) {
-                $booking->nights = Carbon::parse($booking->check_in)
-                    ->diffInDays(Carbon::parse($booking->check_out));
-            }
-            
-            // Calculate total amount if not set
+            // Set total amount to room's semester price
             if (!$booking->total_amount) {
-                $booking->total_amount = $booking->nights * $booking->room->price_per_night;
+                $booking->total_amount = $booking->room->price_per_semester;
             }
 
             // Set default status if not set

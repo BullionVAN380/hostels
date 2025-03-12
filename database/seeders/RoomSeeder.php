@@ -9,44 +9,46 @@ class RoomSeeder extends Seeder
 {
     public function run()
     {
-        Room::create([
-            'room_number' => '101',
-            'type' => 'Single',
-            'capacity' => 1,
-            'price_per_night' => 30.00,
-            'status' => 'available',
-        ]);
+        $rooms = [
+            [
+                'room_number' => '101',
+                'type' => 'Single',
+                'capacity' => 1,
+                'price_per_semester' => 30000,
+                'status' => 'available'
+            ],
+            [
+                'room_number' => '102',
+                'type' => 'Double',
+                'capacity' => 2,
+                'price_per_semester' => 25000,
+                'status' => 'available'
+            ],
+            [
+                'room_number' => '103',
+                'type' => 'Triple',
+                'capacity' => 3,
+                'price_per_semester' => 20000,
+                'status' => 'available'
+            ],
+            [
+                'room_number' => '201',
+                'type' => 'Single',
+                'capacity' => 1,
+                'price_per_semester' => 32000,
+                'status' => 'available'
+            ],
+            [
+                'room_number' => '202',
+                'type' => 'Double',
+                'capacity' => 2,
+                'price_per_semester' => 27000,
+                'status' => 'available'
+            ]
+        ];
 
-        Room::create([
-            'room_number' => '102',
-            'type' => 'Double',
-            'capacity' => 2,
-            'price_per_night' => 50.00,
-            'status' => 'available',
-        ]);
-
-        Room::create([
-            'room_number' => '201',
-            'type' => 'Dorm',
-            'capacity' => 4,
-            'price_per_night' => 20.00,
-            'status' => 'available',
-        ]);
-
-        Room::create([
-            'room_number' => '202',
-            'type' => 'Dorm',
-            'capacity' => 6,
-            'price_per_night' => 25.00,
-            'status' => 'available',
-        ]);
-
-        Room::create([
-            'room_number' => '301',
-            'type' => 'Single',
-            'capacity' => 1,
-            'price_per_night' => 35.00,
-            'status' => 'available',
-        ]);
+        foreach ($rooms as $room) {
+            Room::create($room);
+        }
     }
 }

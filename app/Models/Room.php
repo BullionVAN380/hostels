@@ -14,12 +14,12 @@ class Room extends Model
         'room_number',
         'type',
         'capacity',
-        'price_per_night',
+        'price_per_semester',
         'status',
     ];
 
     protected $casts = [
-        'price_per_night' => 'decimal:2',
+        'price_per_semester' => 'decimal:2',
         'capacity' => 'integer'
     ];
 

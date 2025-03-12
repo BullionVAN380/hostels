@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('room_number')->unique();
             $table->string('type');
             $table->integer('capacity');
-            $table->decimal('price_per_night', 10, 2);
+            $table->decimal('price_per_semester', 10, 2);
             $table->enum('status', ['available', 'occupied'])->default('available');
             $table->timestamps();
         });

@@ -40,8 +40,8 @@
                                     <p class="font-medium text-gray-900">{{ $room->capacity }} Person(s)</p>
                                 </div>
                                 <div>
-                                    <p class="text-gray-600">Price per night:</p>
-                                    <p class="font-medium text-gray-900">${{ number_format($room->price_per_night, 2) }}</p>
+                                    <p class="text-gray-600">Price per Semester:</p>
+                                    <p class="font-medium text-gray-900">KSh {{ number_format($room->price_per_semester, 2) }}</p>
                                 </div>
                             </div>
                         </div>

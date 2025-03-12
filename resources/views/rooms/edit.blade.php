@@ -28,59 +28,57 @@
                         @csrf
                         @method('PUT')
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
                             <div>
                                 <label for="room_number" class="block text-sm font-medium text-gray-700">Room Number</label>
                                 <input type="text" name="room_number" id="room_number" 
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('room_number', $room->room_number) }}" 
-                                    placeholder="e.g., 101" required>
+                                    required>
                             </div>
 
                             <div>
                                 <label for="type" class="block text-sm font-medium text-gray-700">Room Type</label>
                                 <select name="type" id="type" 
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     required>
-                                    <option value="">Select a type</option>
                                     <option value="Single" {{ old('type', $room->type) == 'Single' ? 'selected' : '' }}>Single Room</option>
                                     <option value="Double" {{ old('type', $room->type) == 'Double' ? 'selected' : '' }}>Double Room</option>
-                                    <option value="Dorm" {{ old('type', $room->type) == 'Dorm' ? 'selected' : '' }}>Dormitory</option>
+                                    <option value="Triple" {{ old('type', $room->type) == 'Triple' ? 'selected' : '' }}>Triple Room</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity (persons)</label>
+                                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity</label>
                                 <input type="number" name="capacity" id="capacity" 
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('capacity', $room->capacity) }}" 
-                                    min="1" max="10" required>
+                                    required min="1">
                             </div>
 
                             <div>
-                                <label for="price_per_night" class="block text-sm font-medium text-gray-700">Price per Night ($)</label>
-                                <input type="number" step="0.01" name="price_per_night" id="price_per_night" 
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" 
-                                    value="{{ old('price_per_night', $room->price_per_night) }}" 
-                                    min="0" required>
+                                <label for="price_per_semester" class="block text-sm font-medium text-gray-700">Price per Semester (KSh)</label>
+                                <input type="number" step="0.01" name="price_per_semester" id="price_per_semester" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    value="{{ old('price_per_semester', $room->price_per_semester) }}" 
+                                    required min="0">
                             </div>
 
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                                 <select name="status" id="status" 
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" 
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     required>
                                     <option value="available" {{ old('status', $room->status) == 'available' ? 'selected' : '' }}>Available</option>
                                     <option value="occupied" {{ old('status', $room->status) == 'occupied' ? 'selected' : '' }}>Occupied</option>
                                 </select>
                             </div>
-                        </div>
 
-                        <div class="flex justify-end pt-6">
-                            <button type="submit" 
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                Update Room
-                            </button>
+                            <div class="flex justify-end">
+                                <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    Update Room
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>

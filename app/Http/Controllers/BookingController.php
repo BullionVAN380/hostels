@@ -77,22 +77,15 @@ class BookingController extends Controller
                 ->with('error', 'Sorry, this room is no longer available.');
         }
 
-        // Calculate nights and total amount
-        $checkIn = Carbon::parse($validated['check_in']);
-        $checkOut = Carbon::parse($validated['check_out']);
-        $nights = $checkIn->diffInDays($checkOut);
-        $totalAmount = $room->price_per_night * $nights;
-
         // Create booking
-        $booking = Booking::create([
-            'user_id' => Auth::id(),
-            'room_id' => $validated['room_id'],
-            'check_in' => $validated['check_in'],
-            'check_out' => $validated['check_out'],
-            'nights' => $nights,
-            'total_amount' => $totalAmount,
-            'status' => 'pending'
-        ]);
+        $booking = new Booking();
+        $booking->user_id = Auth::id();
+        $booking->room_id = $validated['room_id'];
+        $booking->check_in = Carbon::parse($validated['check_in']);
+        $booking->check_out = Carbon::parse($validated['check_out']);
+        $booking->total_amount = $room->price_per_semester;
+        $booking->status = 'pending';
+        $booking->save();
 
         // Update room status
         $room->update(['status' => 'occupied']);
@@ -112,6 +105,37 @@ class BookingController extends Controller
         }
 
         return view('bookings.show', compact('booking'));
+    }
+
+    /**
+     * Cancel a booking.
+     *
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel(Booking $booking)
+    {
+        // Check if user is authorized to cancel this booking
+        if (Auth::user()->role !== 'admin' && $booking->user_id !== Auth::id()) {
+            return redirect()->route('bookings.index')
+                ->with('error', 'You are not authorized to cancel this booking.');
+        }
+
+        // Only pending bookings can be cancelled
+        if ($booking->status !== 'pending') {
+            return back()->with('error', 'Only pending bookings can be cancelled.');
+        }
+
+        // Update booking status
+        $booking->status = 'cancelled';
+        $booking->save();
+
+        // Make room available again
+        $booking->room->status = 'available';
+        $booking->room->save();
+
+        return redirect()->route('bookings.index')
+            ->with('success', 'Booking cancelled successfully.');
     }
 
     /**

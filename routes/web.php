@@ -39,7 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
     Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
 
+    // Booking routes
     Route::resource('bookings', BookingController::class);
+    Route::patch('bookings/{booking}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
+
+    // Payment routes
     Route::get('payments/{booking}', [PaymentController::class, 'create'])->name('payments.create');
     Route::post('payments/{booking}', [PaymentController::class, 'store'])->name('payments.store');
 

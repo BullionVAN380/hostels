@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->date('check_in');
             $table->date('check_out');
-            $table->integer('nights');
             $table->decimal('total_amount', 10, 2);
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();

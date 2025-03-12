@@ -51,9 +51,9 @@
                             </div>
 
                             <div>
-                                <x-input-label for="price_per_night" :value="__('Price per Night ($)')" />
-                                <x-text-input id="price_per_night" name="price_per_night" type="number" step="0.01" class="mt-1 block w-full" :value="old('price_per_night')" required min="0" />
-                                <x-input-error :messages="$errors->get('price_per_night')" class="mt-2" />
+                                <x-input-label for="price_per_semester" :value="__('Price per Semester (KSh)')" />
+                                <x-text-input id="price_per_semester" name="price_per_semester" type="number" step="0.01" class="mt-1 block w-full" :value="old('price_per_semester')" required min="0" />
+                                <x-input-error :messages="$errors->get('price_per_semester')" class="mt-2" />
                             </div>
 
                             <div>

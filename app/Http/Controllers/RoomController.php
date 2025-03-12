@@ -54,10 +54,10 @@ class RoomController extends Controller
 
         $validated = $request->validate([
             'room_number' => 'required|string|unique:rooms',
-            'type' => 'required|in:Single,Double,Dorm',
-            'capacity' => 'required|integer|min:1|max:10',
-            'price_per_night' => 'required|numeric|min:0',
-            'status' => 'required|in:available,occupied',
+            'type' => 'required|string',
+            'capacity' => 'required|integer|min:1',
+            'price_per_semester' => 'required|numeric|min:0',
+            'status' => 'required|in:available,occupied'
         ]);
 
         Room::create($validated);
@@ -108,10 +108,10 @@ class RoomController extends Controller
 
         $validated = $request->validate([
             'room_number' => 'required|string|unique:rooms,room_number,' . $room->id,
-            'type' => 'required|in:Single,Double,Dorm',
-            'capacity' => 'required|integer|min:1|max:10',
-            'price_per_night' => 'required|numeric|min:0',
-            'status' => 'required|in:available,occupied',
+            'type' => 'required|string',
+            'capacity' => 'required|integer|min:1',
+            'price_per_semester' => 'required|numeric|min:0',
+            'status' => 'required|in:available,occupied'
         ]);
 
         $room->update($validated);

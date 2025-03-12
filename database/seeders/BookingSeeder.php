@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Booking;
 use App\Models\User;
 use App\Models\Room;
+use Carbon\Carbon;
 
 class BookingSeeder extends Seeder
 {
@@ -21,19 +22,17 @@ class BookingSeeder extends Seeder
             'user_id' => $john->id,
             'room_id' => $room102->id,
             'check_in' => '2025-03-15',
-            'check_out' => '2025-03-20',
-            'nights' => 5,
-            'total_amount' => 5 * $room102->price_per_night,
+            'check_out' => '2025-07-15',
+            'total_amount' => $room102->price_per_semester,
             'status' => 'confirmed',
         ]);
 
         Booking::create([
             'user_id' => $jane->id,
             'room_id' => $room201->id,
-            'check_in' => '2025-03-18',
-            'check_out' => '2025-03-25',
-            'nights' => 7,
-            'total_amount' => 7 * $room201->price_per_night,
+            'check_in' => '2025-08-15',
+            'check_out' => '2025-12-15',
+            'total_amount' => $room201->price_per_semester,
             'status' => 'confirmed',
         ]);
     }

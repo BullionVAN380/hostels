@@ -45,21 +45,21 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Number of Nights</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Duration</p>
                                     <p class="text-base font-medium text-gray-900 dark:text-gray-100">
-                                        {{ $booking->nights }} night(s)
+                                        One Semester
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Price per Night</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Price per Semester</p>
                                     <p class="text-base font-medium text-gray-900 dark:text-gray-100">
-                                        ${{ number_format($booking->room->price_per_night, 2) }}
+                                        KSh {{ number_format($booking->room->price_per_semester, 2) }}
                                     </p>
                                 </div>
                             </div>
                             <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                                 <div class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                                    Total Amount: ${{ number_format($booking->total_amount, 2) }}
+                                    Total Amount: KSh {{ number_format($booking->total_amount, 2) }}
                                 </div>
                             </div>
                         </div>
@@ -73,11 +73,11 @@
                             <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                                 <p class="text-gray-600 dark:text-gray-400 mb-4">
                                     For demonstration purposes, this is a simplified payment process. 
-                                    In a real application, this would integrate with a payment gateway.
+                                    In a real application, this would integrate with M-PESA or other payment methods.
                                 </p>
                                 <button type="submit"
                                         class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-                                    Pay ${{ number_format($booking->total_amount, 2) }}
+                                    Pay KSh {{ number_format($booking->total_amount, 2) }}
                                 </button>
                             </div>
                         </div>

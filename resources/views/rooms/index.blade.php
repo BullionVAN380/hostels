@@ -33,10 +33,10 @@
                         <table class="min-w-full table-auto">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="px-4 py-2">Room</th>
+                                    <th class="px-4 py-2">Room Number</th>
                                     <th class="px-4 py-2">Type</th>
                                     <th class="px-4 py-2">Capacity</th>
-                                    <th class="px-4 py-2">Price/Night</th>
+                                    <th class="px-4 py-2">Price/Semester</th>
                                     <th class="px-4 py-2">Status</th>
                                     <th class="px-4 py-2">Actions</th>
                                 </tr>
@@ -47,7 +47,7 @@
                                         <td class="px-4 py-2">#{{ $room->room_number }}</td>
                                         <td class="px-4 py-2">{{ $room->type }}</td>
                                         <td class="px-4 py-2">{{ $room->capacity }} Person(s)</td>
-                                        <td class="px-4 py-2">${{ number_format($room->price_per_night, 2) }}</td>
+                                        <td class="px-4 py-2">KSh {{ number_format($room->price_per_semester, 2) }}</td>
                                         <td class="px-4 py-2">
                                             <span class="px-2 py-1 rounded text-sm {{ $room->status === 'available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                                 {{ ucfirst($room->status) }}
