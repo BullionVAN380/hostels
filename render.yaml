@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: hostel-management
+    env: php
+    buildCommand: composer install --no-interaction --prefer-dist --optimize-autoloader && npm ci && npm run build
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_URL
+        sync: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: hostel-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: hostel-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: hostel-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: hostel-db
+          property: username
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: hostel-db
+          property: password
+
+databases:
+  - name: hostel-db
+    plan: free
